@@ -47,7 +47,7 @@
   "devDependencies": {
     "axios": "^1.6.8",
     "cypress": "^13.8.1",
-    "husky": "^9.1.7"
+    "husky": "^9.0.0"
   },
   "dependencies": {
     "concurrently": "^9.1.0"
