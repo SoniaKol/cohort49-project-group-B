@@ -20,6 +20,7 @@ const orderSchema = new Schema({
   status: {
     type: String,
     required: true,
+    //enum for status can be remove canceled?
     enum: ["pending", "completed", "canceled", "delivered"],
   },
   createdAt: {
