@@ -1,0 +1,54 @@
+import mongoose from "mongoose";
+
+const { Schema } = mongoose;
+
+const itemSchema = new Schema({
+  id: {
+    type: Number,
+    required: true,
+    unique: true,
+  },
+  Restaurants_id: {
+    type: Schema.Types.ObjectId, // Reference to the Restaurant model
+    ref: "Restaurant",
+    required: true,
+  },
+  food_name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+    min: 0,
+  },
+  category: {
+    type: String,
+    required: true,
+  },
+  reviews: [
+    {
+      type: Schema.Types.ObjectId, // Reference to the Review model
+      ref: "Review",
+    },
+  ],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+// Update `updatedAt` field before saving
+itemSchema.pre("save", function (next) {
+  this.updatedAt = Date.now();
+  next();
+});
+
+const Item = mongoose.model("Item", itemSchema);
+
+export default Item;
