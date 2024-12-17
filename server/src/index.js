@@ -8,10 +8,6 @@ import { logInfo, logError } from "./util/logging.js";
 import connectDB from "./db/connectDB.js";
 import testRouter from "./testRouter.js";
 
-// import seedDatabase from "./db/seedDB.js";
-//TODO: Import the data to seed the database with
-//TODO: Import the models to seed
-
 // The environment should set the port
 const port = process.env.PORT;
 
@@ -23,7 +19,6 @@ if (port == null) {
 const startServer = async () => {
   try {
     await connectDB();
-    //TODO: Seed the database with data using the seedDB function
     app.listen(port, () => {
       logInfo(`Server started on port ${port}`);
     });
