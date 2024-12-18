@@ -12,19 +12,15 @@ const Nav = () => {
       <Link to="/user" data-testid={TEST_ID.linkToUsers}>
         <li>Users</li>
       </Link>
-      <Link to={"/about-us"}
-        data-testid={TEST_ID.linkToAboutUs}>
+      <Link to={"/about-us"} data-testid={TEST_ID.linkToAboutUs}>
         <li>About Us</li>
       </Link>
-      <Link to={"/restaurants"}
-        data-testid={TEST_ID.linkToRestaurants}>
+      <Link to={"/restaurants"} data-testid={TEST_ID.linkToRestaurants}>
         <li>Restaurants</li>
       </Link>
-      <Link to={"/logout"}
-        data-testid={TEST_ID.linkToLogout}>
+      <Link to={"/logout"} data-testid={TEST_ID.linkToLogout}>
         <li>Logout</li>
       </Link>
-
     </ul>
   );
 };
