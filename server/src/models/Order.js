@@ -3,11 +3,6 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const orderSchema = new Schema({
-  id: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
   restaurant_id: {
     type: Schema.Types.ObjectId, // Reference to the Restaurant model
     ref: "Restaurant",

@@ -8,6 +8,11 @@ const itemSchema = new Schema({
     ref: "Restaurant",
     required: true,
   },
+  description: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   food_name: {
     type: String,
     required: true,
