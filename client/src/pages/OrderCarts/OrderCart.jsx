@@ -40,7 +40,7 @@ const OrderCart = () => {
                 style={{ width: "100%", height: "150px", objectFit: "cover" }}
               />
               <h4>{pizza.name}</h4>
-              <p>${pizza.price}</p>
+              <p>€{pizza.price}</p>
               <button
                 onClick={() => addToCart(pizza)}
                 style={{
@@ -91,14 +91,14 @@ const OrderCart = () => {
                 style={{ display: "flex", justifyContent: "space-between" }}
               >
                 <span>{item.name}</span>
-                <span>${item.price}</span>
+                <span>€{item.price}</span>
               </li>
             ))}
           </ul>
           <hr />
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <strong>Total:</strong>
-            <strong>${totalAmount}</strong>
+            <strong>€{totalAmount}</strong>
           </div>
           <button style={{ marginTop: "20px", padding: "10px 20px" }}>
             Proceed to Checkout
