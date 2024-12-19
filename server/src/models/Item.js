@@ -26,6 +26,7 @@ const itemSchema = new Schema({
   category: {
     type: String,
     required: true,
+    enum: ["starter", "main_dish", "desserts", "drinks"],
   },
   reviews: [
     {

@@ -15,14 +15,14 @@ const orderSchema = new Schema({
   status: {
     type: String,
     required: true,
-    //enum for status can be remove canceled?
-    enum: ["pending", "completed", "canceled", "delivered"],
+    enum: ["pending", "completed", "on the way", "delivered"],
   },
   category: {
     type: String,
     required: true,
     enum: ["starter", "main_dish", "desserts", "drinks"],
   },
+  //ordered items?
   createdAt: {
     type: Date,
     default: Date.now,
