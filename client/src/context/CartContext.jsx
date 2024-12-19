@@ -9,8 +9,17 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (item) => setCartItems((prevItems) => [...prevItems, item]);
 
-  const removeFromCart = (id) =>
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  const removeFromCart = (id) => {
+    setCartItems((prevItems) => {
+      const index = prevItems.findIndex((item) => item.id === id);
+      if (index !== -1) {
+        const updatedItems = [...prevItems];
+        updatedItems.splice(index, 1);
+        return updatedItems;
+      }
+      return prevItems;
+    });
+  };
 
   return (
     <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
