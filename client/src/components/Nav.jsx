@@ -6,7 +6,14 @@ import TEST_ID from "./Nav.testid";
 const Nav = () => {
   return (
     <ul>
-      <nav>
+      <nav
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+          padding: "10px",
+          backgroundColor: "#ccc",
+        }}
+      >
         <Link to="/order-cart">Order Cart</Link>
       </nav>
 
