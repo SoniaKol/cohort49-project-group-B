@@ -1,25 +1,37 @@
-// const mongoose = require("mongoose");
-// TODO: models import
+import mongoose from "mongoose";
+import connectDB from "./connectDB.js";
 
-// TODO: Data to seed
+// Schemas for the database
+import User from "../models/User.js";
+import Item from "../models/Item.js";
+import Order from "../models/Order.js";
+import Restaurant from "../models/Restaurants.js";
+import Review from "../models/Reviews.js";
+
+// Data to seed
+import restaurantData from "../data/restaurant.js";
+import usersData from "../data/user.js";
+import itemsData from "../data/item.js";
+import reviewsData from "../data/review.js";
+import ordersData from "../data/order.js";
 
 // Function to seed the database
 async function seedDatabase(model, data) {
   try {
-    // Clear the collection
+    await connectDB();
     await model.deleteMany();
-    // console.log("Collection cleared"); // will be removed
-
-    // Paste the data
     await model.insertMany(data);
-    // console.log("Data successfully pasted"); // will be removed
+    mongoose.disconnect();
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Error:", error);
   }
 }
 
-// call the function
+seedDatabase(Restaurant, restaurantData);
+seedDatabase(User, usersData);
+seedDatabase(Item, itemsData);
+seedDatabase(Review, reviewsData);
+seedDatabase(Order, ordersData);
 
-seedDatabase();
-
-// preload data with node src/db/seedDB.js
+// Run the script with the following command: npm run seed
