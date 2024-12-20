@@ -6,7 +6,7 @@ const Item = ({ item }) => {
   return (
     <div>
       <img
-        src={`/img/${imgId}.jpg`}
+        src={`img/${imgId}.jpg`}
         alt={food_name}
         style={{
           width: "100px",
