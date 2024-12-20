@@ -18,6 +18,7 @@ const useFetch = (route, onReceived) => {
    * We use the AbortController which is supported by all modern browsers to handle cancellations
    * For more info: https://developer.mozilla.org/en-US/docs/Web/API/AbortController
    */
+  // TODO: uncomment the following lines to enable cancellation
   const controller = new AbortController();
   const signal = controller.signal;
   const cancelFetch = () => {
@@ -53,7 +54,9 @@ const useFetch = (route, onReceived) => {
       // We add the /api subsection here to make it a single point of change if our configuration changes
       const url = `${process.env.BASE_SERVER_URL}/api${route}`;
 
+      // TODO: uncomment the following line to enable cancellation
       const res = await fetch(url, { ...baseOptions, ...options, signal });
+      // const res = await fetch(url, { ...baseOptions, ...options });
 
       if (!res.ok) {
         setError(
@@ -85,7 +88,9 @@ const useFetch = (route, onReceived) => {
     });
   };
 
+  // TODO: uncomment the following line to enable cancellation
   return { isLoading, error, performFetch, cancelFetch };
+  // return { isLoading, error, performFetch };
 };
 
 export default useFetch;
