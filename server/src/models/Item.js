@@ -42,6 +42,10 @@ const itemSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  imgId: {
+    type: Number,
+    required: true,
+  },
 });
 
 // Update `updatedAt` field before saving
