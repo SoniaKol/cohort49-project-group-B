@@ -1,17 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import TEST_ID from "./Nav.testid";
-
 const Nav = () => {
   return (
-    <ul>
-      <Link to="/" data-testid={TEST_ID.linkToHome}>
-        <li>Home</li>
-      </Link>
-      <Link to="/user" data-testid={TEST_ID.linkToUsers}>
-        <li>Users</li>
-      </Link>
+    <nav style={{ display: "flex", justifyContent: "left" }}>
+      <Link to="/order-cart">Order Cart</Link>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/user">Users</Link>
+        </li>
+      </ul>
       <Link to={"/about-us"} data-testid={TEST_ID.linkToAboutUs}>
         <li>About Us</li>
       </Link>
@@ -21,7 +22,7 @@ const Nav = () => {
       <Link to={"/logout"} data-testid={TEST_ID.linkToLogout}>
         <li>Logout</li>
       </Link>
-    </ul>
+    </nav>
   );
 };
 
