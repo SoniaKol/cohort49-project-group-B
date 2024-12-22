@@ -1,17 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
-import img12 from "../img/12.jpg";
 
 const Item = ({ item }) => {
-  const { food_name, price, description } = item;
-  // const img = "img" + imgId;
+  const { food_name, price, description, imgId } = item;
+
+  const images = [];
+  const importAll = (requireContext) =>
+    requireContext.keys().forEach((key) => {
+      images.push({
+        src: requireContext(key),
+        imgName: key,
+      });
+    });
+
+  importAll(require.context("../img", false, /\.jpg$/));
+
+  const img = images.find((img) => img.imgName.includes(imgId));
+
   return (
     <div>
       <img
-        src={img12}
+        src={img.src.default}
         alt={food_name}
         style={{
           width: "100px",
+          height: "100px",
         }}
       />
       <h3>{food_name}</h3>
