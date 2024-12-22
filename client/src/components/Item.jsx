@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import img12 from "../img/12.jpg";
 
 const Item = ({ item }) => {
-  const { food_name, price, description, imgId } = item;
+  const { food_name, price, description } = item;
+  // const img = "img" + imgId;
   return (
     <div>
       <img
-        src={`img/${imgId}.jpg`}
+        src={img12}
         alt={food_name}
         style={{
           width: "100px",
