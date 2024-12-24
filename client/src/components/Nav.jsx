@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import TEST_ID from "./Nav.testid";
 const Nav = () => {
   return (
     <nav style={{ display: "flex", justifyContent: "left" }}>
@@ -13,6 +14,15 @@ const Nav = () => {
           <Link to="/user">Users</Link>
         </li>
       </ul>
+      <Link to={"/about-us"} data-testid={TEST_ID.linkToAboutUs}>
+        <li>About Us</li>
+      </Link>
+      <Link to={"/restaurants"} data-testid={TEST_ID.linkToRestaurants}>
+        <li>Restaurants</li>
+      </Link>
+      <Link to={"/logout"} data-testid={TEST_ID.linkToLogout}>
+        <li>Logout</li>
+      </Link>
     </nav>
   );
 };
