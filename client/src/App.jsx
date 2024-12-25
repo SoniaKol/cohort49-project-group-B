@@ -5,7 +5,7 @@ import Home from "./pages/Home/Home";
 import OrderCart from "./pages/OrderCarts/OrderCart";
 import CreateUser from "./pages/User/CreateUser";
 import UserList from "./pages/User/UserList";
-import OrderCart from "./pages/OrderCarts/OrderCart";
+import Menu from "./pages/Menu/Menu";
 
 const App = () => {
   return (
