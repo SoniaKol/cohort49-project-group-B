@@ -4,25 +4,36 @@ import { Link } from "react-router-dom";
 import TEST_ID from "./Nav.testid";
 const Nav = () => {
   return (
-    <nav style={{ display: "flex", justifyContent: "left" }}>
-      <Link to="/order-cart">Order Cart</Link>
-      <ul>
+    <nav>
+      <ul style={{ display: "flex", justifyContent: "left", gap: "20px" }}>
         <li>
           <Link to="/">Home</Link>
         </li>
         <li>
+          <Link to="/menu">Menu</Link>
+        </li>
+        <li>
           <Link to="/user">Users</Link>
         </li>
+        <li>
+          <Link to="/order-cart">Order Cart</Link>
+        </li>
+        <li>
+          <Link to="/about-us" data-testid={TEST_ID.linkToAboutUs}>
+            About Us
+          </Link>
+        </li>
+        <li>
+          <Link to="/restaurants" data-testid={TEST_ID.linkToRestaurants}>
+            Restaurants
+          </Link>
+        </li>
+        <li>
+          <Link to="/logout" data-testid={TEST_ID.linkToLogout}>
+            Logout
+          </Link>
+        </li>
       </ul>
-      <Link to={"/about-us"} data-testid={TEST_ID.linkToAboutUs}>
-        <li>About Us</li>
-      </Link>
-      <Link to={"/restaurants"} data-testid={TEST_ID.linkToRestaurants}>
-        <li>Restaurants</li>
-      </Link>
-      <Link to={"/logout"} data-testid={TEST_ID.linkToLogout}>
-        <li>Logout</li>
-      </Link>
     </nav>
   );
 };

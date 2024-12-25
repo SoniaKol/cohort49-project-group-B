@@ -5,6 +5,7 @@ import Home from "./pages/Home/Home";
 import OrderCart from "./pages/OrderCarts/OrderCart";
 import CreateUser from "./pages/User/CreateUser";
 import UserList from "./pages/User/UserList";
+import Menu from "./pages/Menu/Menu";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/menu" element={<Menu />} />
         <Route path="/user" element={<UserList />} />
         <Route path="/user/create" element={<CreateUser />} />
         <Route path="/about-us" element={<h1>About Us</h1>} />
