@@ -15,7 +15,7 @@ const Item = ({ item }) => {
 
   importAll(require.context("../img", false, /\.jpg$/));
 
-  const img = images.find((img) => img.imgName.includes(imgId));
+  const img = images.find((img) => img.imgName === `./${imgId}.jpg`);
 
   return (
     <div>
