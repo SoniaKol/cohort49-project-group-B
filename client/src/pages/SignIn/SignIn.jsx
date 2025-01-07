@@ -1,12 +1,17 @@
 import React from "react";
 
 const SignIn = () => {
+  const handleSignIn = () => {
+    // Redirect user to the Google OAuth authentication page
+    window.location.href = "http://localhost:3000/auth/google";
+  };
+
   return (
-    <div>
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
       <h1>Sign In</h1>
-      <a href="http://localhost:3000/auth/google/callback">
-        <button>Sign in with Google</button>
-      </a>
+      <button onClick={handleSignIn} style={{ padding: "10px 20px", fontSize: "16px" }}>
+        Sign in with Google
+      </button>
     </div>
   );
 };
