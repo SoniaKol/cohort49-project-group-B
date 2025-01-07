@@ -6,13 +6,15 @@ import OrderCart from "./pages/OrderCarts/OrderCart";
 import CreateUser from "./pages/User/CreateUser";
 import UserList from "./pages/User/UserList";
 import Menu from "./pages/Menu/Menu";
+import SignIn from "./pages/SignIn/SignIn";
 
 const App = () => {
   return (
     <>
       <Nav />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<SignIn />} />
+        <Route path= "/dashboard" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/user" element={<UserList />} />
         <Route path="/user/create" element={<CreateUser />} />
