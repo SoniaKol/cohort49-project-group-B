@@ -9,7 +9,6 @@ import Menu from "./pages/Menu/Menu";
 import SignIn from "./pages/SignIn/SignIn";
 import MenuList from "./components/MenuList";
 
-
 const App = () => {
   return (
     <>
@@ -18,7 +17,7 @@ const App = () => {
         <Route path="/" element={<SignIn />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
-          <Route path="/menu" element={<Menu />}>
+        <Route path="/menu" element={<Menu />}>
           <Route path="" element={<MenuList />} />
           <Route path=":filter" element={<MenuList />} />
         </Route>
