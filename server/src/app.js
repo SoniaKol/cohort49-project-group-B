@@ -1,24 +1,53 @@
+import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
-
 import userRouter from "./routes/user.js";
 import itemRouter from "./routes/menu.js";
+import menuRouter from "./routes/menu.js";
 import orderRouter from "./routes/orderRoutes.js";
+import authRouter from "./routes/auth.js";
+import "./controllers/auth.js";
+
+dotenv.config();
 
 // Create an express server
 const app = express();
+// Define allowed origins
+const allowedOrigins = [
+  "http://localhost:8080",
+  "https://c49-group-b.hackyourfuture.tech",
+];
 
 // Tell express to use the json middleware
 app.use(express.json());
 // Allow everyone to access our API. In a real application, we would need to restrict this!
-app.use(cors());
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg =
+          "The CORS policy for this site does not allow access from the specified Origin.";
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+    credentials: true,
+  }),
+);
 
 /****** Attach routes ******/
 /**
  * We use /api/ at the start of every route!
  * As we also host our client code on heroku we want to separate the API endpoints.
  */
+
+// Attach both auth and user routes
+app.use("/auth", authRouter);
 app.use("/api/user", userRouter);
+
+// Attach menu and order routes
+app.use("/api/menu", menuRouter);
 app.use("/api/menu", itemRouter);
 app.use("/api/order", orderRouter);
 
