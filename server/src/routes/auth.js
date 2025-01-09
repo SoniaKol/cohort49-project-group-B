@@ -10,6 +10,10 @@ app.use(
     secret: process.env.SESSION_SECRET || "default_secret",
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    },
   }),
 );
 app.use(passport.initialize());
@@ -25,7 +29,11 @@ app.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/signin" }),
   (req, res) => {
-    res.redirect("http://localhost:8080/home");
+    const redirectUrl =
+      process.env.NODE_ENV === "production"
+        ? "https://c49-group-b.hackyourfuture.tech/home"
+        : "http://localhost:8080/home";
+    res.redirect(redirectUrl);
   },
 );
 
@@ -33,7 +41,11 @@ app.get(
 app.get("/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err);
-    res.redirect("/signin");
+    const redirectUrl =
+      process.env.NODE_ENV === "production"
+        ? "https://c49-group-b.hackyourfuture.tech/signin"
+        : "http://localhost:8080/signin";
+    res.redirect(redirectUrl);
   });
 });
 
