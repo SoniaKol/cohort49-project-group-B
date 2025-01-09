@@ -1,28 +1,40 @@
 import express from "express";
 import passport from "passport";
+import session from "express-session";
+import "../controllers/auth.js";
 
-const authRouter = express.Router();
+const app = express();
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "default_secret",
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Google Authentication
-authRouter.get(
-  "auth/google",
+app.get(
+  "/google",
   passport.authenticate("google", { scope: ["profile", "email"] }),
 );
 
-authRouter.get(
-  "auth/google/callback",
+app.get(
+  "/google/callback",
   passport.authenticate("google", { failureRedirect: "/signin" }),
   (req, res) => {
-    res.redirect("/");
+    res.redirect("http://localhost:8080/home");
   },
 );
 
 // Logout
-authRouter.get("/logout", (req, res, next) => {
+app.get("/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err);
     res.redirect("/signin");
   });
 });
 
-export default authRouter;
+export default app;
