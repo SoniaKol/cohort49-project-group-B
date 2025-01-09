@@ -7,6 +7,8 @@ import CreateUser from "./pages/User/CreateUser";
 import UserList from "./pages/User/UserList";
 import Menu from "./pages/Menu/Menu";
 import SignIn from "./pages/SignIn/SignIn";
+import MenuList from "./components/MenuList";
+
 
 const App = () => {
   return (
@@ -16,6 +18,10 @@ const App = () => {
         <Route path="/" element={<SignIn />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
+          <Route path="/menu" element={<Menu />}>
+          <Route path="" element={<MenuList />} />
+          <Route path=":filter" element={<MenuList />} />
+        </Route>
         <Route path="/user" element={<UserList />} />
         <Route path="/user/create" element={<CreateUser />} />
         <Route path="/about-us" element={<h1>About us</h1>} />

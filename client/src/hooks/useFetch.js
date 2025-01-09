@@ -19,11 +19,11 @@ const useFetch = (route, onReceived) => {
    * For more info: https://developer.mozilla.org/en-US/docs/Web/API/AbortController
    */
   // TODO: uncomment the following lines to enable cancellation
-  // const controller = new AbortController();
+  const controller = new AbortController();
   // const signal = controller.signal;
-  // const cancelFetch = () => {
-  //   controller.abort();
-  // };
+  const cancelFetch = () => {
+    controller.abort();
+  };
 
   if (route.includes("api/")) {
     /**
@@ -89,8 +89,8 @@ const useFetch = (route, onReceived) => {
   };
 
   // TODO: uncomment the following line to enable cancellation
-  // return { isLoading, error, performFetch, cancelFetch };
-  return { isLoading, error, performFetch };
+  return { isLoading, error, performFetch, cancelFetch };
+  // return { isLoading, error, performFetch };
 };
 
 export default useFetch;
