@@ -1,21 +1,39 @@
-import React, { useState } from "react";
-
-// Import the pizza data
-import restaurantData from "../../../server/src/data/restaurant.js"; // If the file is in the same folder
-// Example list of pizzas with names and image URLs
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function AvailableRestaurants() {
-  // Pagination states
-  const itemsPerPage = 5; // Number of pizzas per page
+  const [restaurants, setRestaurants] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
 
-  // Calculate total pages
-  const totalPages = Math.ceil(restaurantData.length / itemsPerPage);
+  // Number of restaurants per page
+  const itemsPerPage = 5;
 
-  // Slice pizza list to get the current page items
+  // Fetch restaurants from the backend API
+  useEffect(() => {
+    const fetchRestaurants = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/restaurants",
+        );
+        setRestaurants(response.data);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
+    };
+
+    fetchRestaurants();
+  }, []); // Only runs once when the component mounts
+
+  // Pagination logic
+  const totalPages = Math.ceil(restaurants.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentPizzas = restaurantData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentRestaurants = restaurants.slice(
+    indexOfFirstItem,
+    indexOfLastItem,
+  );
 
   // Handle page change
   const goToPage = (pageNumber) => {
@@ -34,16 +52,23 @@ function AvailableRestaurants() {
     }
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
-      <h2>Available Pizza Restaurants</h2>
+      <h2>Available Restaurants</h2>
 
-      {/* Display the current pizzas with images */}
+      {/* Display the current restaurants */}
       <ul>
-        {currentPizzas.map((pizza, index) => (
-          <li key={index}>
-            <img src={pizza.imageUrl} alt={pizza.name} />
-            {pizza.name}
+        {currentRestaurants.map((restaurant) => (
+          <li key={restaurant._id}>
+            <img src={restaurant.imageUrl} alt={restaurant.name} />
+            <h3>{restaurant.name}</h3>
+            <p>{restaurant.address}</p>
+            <p>{restaurant.phone}</p>
+            <p>{restaurant.cuisine}</p>
           </li>
         ))}
       </ul>
