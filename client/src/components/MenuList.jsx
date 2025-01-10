@@ -3,16 +3,22 @@ import PropTypes from "prop-types";
 import Item from "./Item";
 import { useCart } from "../context/CartContext";
 import useFetch from "../hooks/useFetch";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams, useSearchParams } from "react-router-dom";
 
 const MenuList = () => {
-  const filter = useParams().filter;
+  const { filter } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const page = parseInt(searchParams.get("page")) || 1;
+  const limit = parseInt(searchParams.get("limit")) || 6;
+  const [totalPages, setTotalPages] = useState(0);
 
   const [items, setItems] = useState(null);
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
-    `/menu/${filter ? filter : ""}`,
+    `/menu/${filter ? filter : ""}?page=${page}&limit=${limit}`,
     (response) => {
       setItems(response.result);
+      setTotalPages(response.totalPages);
     },
   );
 
@@ -22,9 +28,13 @@ const MenuList = () => {
     return () => {
       cancelFetch();
     };
-  }, [filter]);
+  }, [filter, page, limit]);
 
   const { addToCart } = useCart();
+
+  const handlePageChange = (newPage) => {
+    setSearchParams({ page: newPage, limit });
+  };
 
   let content = null;
 
@@ -66,6 +76,20 @@ const MenuList = () => {
   return (
     <>
       {content}
+      <div>
+        <button disabled={page <= 1} onClick={() => handlePageChange(page - 1)}>
+          Previous
+        </button>
+        <span>
+          Page {page} of {totalPages}
+        </span>
+        <button
+          disabled={page >= totalPages}
+          onClick={() => handlePageChange(page + 1)}
+        >
+          Next
+        </button>
+      </div>
       <Outlet />
     </>
   );
