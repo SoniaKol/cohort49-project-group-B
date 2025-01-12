@@ -53,7 +53,7 @@ app.use("/api/menu", menuRouter);
 app.use("/api/menu", itemRouter);
 
 app.use("/api/restaurants", restaurantsRouter);
-
+app.use("/api/restaurants", restaurantsRouter);
 app.use("/api/order", orderRouter);
 
 export default app;
