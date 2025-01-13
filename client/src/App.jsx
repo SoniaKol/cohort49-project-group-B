@@ -11,7 +11,7 @@ import MenuList from "./components/MenuList";
 
 const App = () => {
   return (
-    <>
+    <div className="App">
       <Nav />
       <Routes>
         <Route path="/" element={<SignIn />} />
@@ -28,7 +28,7 @@ const App = () => {
         <Route path="/logout" element={<h1>Logout</h1>} />
         <Route path="/order-cart" element={<OrderCart />} />
       </Routes>
-    </>
+    </div>
   );
 };
 
