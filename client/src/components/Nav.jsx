@@ -6,7 +6,7 @@ const Nav = () => {
   const navigate = useNavigate();
 
   const logout = () => {
-    navigate("/login");
+    navigate("/");
   };
   return (
     <nav>
