@@ -1,22 +1,23 @@
 import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
-    required: true,
+    required: [true, "Your email address is required"],
     unique: true,
     trim: true,
     lowercase: true,
   },
   username: {
     type: String,
-    required: true,
+    required: [true, "Your username is required"],
     unique: true,
     trim: true,
   },
   password: {
     type: String,
-    required: true,
+    required: [true, "Your password is required"],
   },
   orders: {
     type: [String], // Array of strings
@@ -40,6 +41,10 @@ const userSchema = new mongoose.Schema({
 userSchema.pre("save", function (next) {
   this.updated_at = new Date().toISOString();
   next();
+});
+
+userSchema.pre("save", async function () {
+  this.password = await bcrypt.hash(this.password, 12);
 });
 
 const User = mongoose.model("User", userSchema);
