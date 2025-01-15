@@ -13,9 +13,10 @@ const Login = () => {
     setPassword("");
 
     setTimeout(() => {
-      navigate("/home");
+      navigate("/menu");
     }, 300);
   };
+
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
     "/login",
     onSuccess,
@@ -68,7 +69,7 @@ const Login = () => {
       </form>
       {statusComponent}
       <span>
-        Already have an account? <Link to={"/signup"}>Signup</Link>
+        Don`t have an account yet? <Link to={"/signup"}>Signup</Link>
       </span>
     </div>
   );

@@ -93,7 +93,7 @@ const Login = () => {
       </form>
       {statusComponent}
       <span>
-        Already have an account? <Link to={"/signup"}>Signup</Link>
+        Already have an account? <Link to={"/login"}>Login</Link>
       </span>
     </div>
   );
