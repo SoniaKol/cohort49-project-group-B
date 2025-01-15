@@ -5,7 +5,7 @@ import itemRouter from "./routes/menu.js";
 import userRouter from "./routes/user.js";
 
 import "./controllers/auth.js";
-import authRouter from "./routes/auth.js";
+// import authRouter from "./routes/auth.js";
 import menuRouter from "./routes/menu.js";
 import orderRouter from "./routes/orderRoutes.js";
 // import authRouter from "./routes/auth.js";
