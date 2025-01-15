@@ -5,9 +5,13 @@ import itemRouter from "./routes/menu.js";
 import userRouter from "./routes/user.js";
 
 import "./controllers/auth.js";
-import authRouter from "./routes/auth.js";
+// import authRouter from "./routes/auth.js";
 import menuRouter from "./routes/menu.js";
 import orderRouter from "./routes/orderRoutes.js";
+// import authRouter from "./routes/auth.js";
+import authRouter from "./routes/AuthRoute.js";
+import "./controllers/auth.js";
+import cookieParser from "cookie-parser";
 import restaurantsRouter from "./routes/restaurants.js";
 
 dotenv.config();
@@ -21,10 +25,12 @@ const allowedOrigins = [
 ];
 
 // Tell express to use the json middleware
+app.use(cookieParser());
 app.use(express.json());
 // Allow everyone to access our API. In a real application, we would need to restrict this!
 app.use(
   cors({
+    // origin: allowedOrigins,
     origin: function (origin, callback) {
       if (!origin) return callback(null, true);
       if (allowedOrigins.indexOf(origin) === -1) {
@@ -35,6 +41,7 @@ app.use(
       return callback(null, true);
     },
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
   }),
 );
 
@@ -45,7 +52,7 @@ app.use(
  */
 
 // Attach both auth and user routes
-app.use("/auth", authRouter);
+app.use("/api", authRouter);
 app.use("/api/user", userRouter);
 
 // Attach menu and order routes

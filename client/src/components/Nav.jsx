@@ -1,19 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import TEST_ID from "./Nav.testid";
 const Nav = () => {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    navigate("/login");
+  };
   return (
     <nav>
       <ul style={{ display: "flex", justifyContent: "left", gap: "20px" }}>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/home">Home</Link>
         </li>
         <li>
           <Link to="/menu">Menu</Link>
-        </li>
-        <li>
-          <Link to="/user">Users</Link>
         </li>
         <li>
           <Link to="/order-cart">Order Cart</Link>
@@ -28,12 +30,9 @@ const Nav = () => {
             Restaurants
           </Link>
         </li>
-        <li>
-          <Link to="/logout" data-testid={TEST_ID.linkToLogout}>
-            Logout
-          </Link>
-        </li>
       </ul>
+
+      <button onClick={logout}>logout</button>
     </nav>
   );
 };
