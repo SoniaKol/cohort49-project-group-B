@@ -14,7 +14,7 @@ const MenuList = () => {
   const [totalPages, setTotalPages] = useState(0);
 
   const [items, setItems] = useState(null);
-  const { isLoading, error, performFetch, cancelFetch } = useFetch(
+  const { isLoading, error, performFetch } = useFetch(
     `/menu/${filter ? filter : ""}?page=${page}&limit=${limit}`,
     (response) => {
       setItems(response.result);
@@ -25,9 +25,9 @@ const MenuList = () => {
   useEffect(() => {
     performFetch();
 
-    return () => {
-      cancelFetch();
-    };
+    // return () => {
+    //   cancelFetch();
+    // };
   }, [filter, page, limit]);
 
   const { addToCart } = useCart();

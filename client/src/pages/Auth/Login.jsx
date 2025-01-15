@@ -13,7 +13,7 @@ const Login = () => {
     setPassword("");
 
     setTimeout(() => {
-      navigate("/menu");
+      navigate("/home");
     }, 300);
   };
 
