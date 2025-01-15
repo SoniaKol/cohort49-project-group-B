@@ -7,11 +7,13 @@ import Signup from "./pages/Auth/Signup"; // Corrected import path
 import Home from "./pages/Home/Home";
 import Menu from "./pages/Menu/Menu";
 import OrderCart from "./pages/OrderCarts/OrderCart";
+import StartPage from "./pages/StartPage";
 
 const App = () => {
   return (
     <div className="App">
       <Routes>
+        <Route path="/" element={<StartPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />

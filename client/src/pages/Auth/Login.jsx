@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import Input from "../../components/Input";
+import AuthHeader from "../../components/AuthHeader";
+import "../../styles/login.css";
+
+import "../../styles/login.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -45,32 +49,53 @@ const Login = () => {
   let statusComponent = null;
   if (error != null) {
     const message = error.message || "An error occurred";
-    statusComponent = <div>Oops: {message}</div>;
+    statusComponent = <div className="login-status">Oops: {message}</div>;
   } else if (isLoading) {
     statusComponent = <div>Login...</div>;
   }
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <Input
-          name="email"
-          value={email}
-          onChange={(value) => setEmail(value)}
-        />
-        <Input
-          name="password"
-          value={password}
-          onChange={(value) => setPassword(value)}
-        />
+    <div className="login">
+      <AuthHeader text="Log In" />
+      <div className="login-wrap">
+        <h3 className="login-title">Welcome</h3>
+        <p className="login-text">
+          Login to your account Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Impedit, fugit. Sequi delectus sit rem iste qui
+          nesciunt in sint tenetur?
+        </p>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <label className="login-form-label" htmlFor="email">
+            Email
+            <Input
+              name="email"
+              value={email}
+              onChange={(value) => setEmail(value)}
+              className="login-form-input"
+            />{" "}
+          </label>
+          <label htmlFor="password" className="login-form-label">
+            Password
+            <Input
+              name="password"
+              value={password}
+              onChange={(value) => setPassword(value)}
+              className="login-form-input"
+            />
+          </label>
 
-        <button type="submit">Login</button>
-      </form>
-      {statusComponent}
-      <span>
-        Don`t have an account yet? <Link to={"/signup"}>Signup</Link>
-      </span>
+          <button className="login-form-button" type="submit">
+            Login
+          </button>
+        </form>
+        {statusComponent}
+        <div className="login-footer">
+          Don`t have an account yet?{" "}
+          <Link to={"/signup"} className="login-footer-link">
+            Signup
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
