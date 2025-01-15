@@ -1,33 +1,47 @@
 import mongoose from "mongoose";
 
-import validateAllowedFields from "../util/validateAllowedFields.js";
-
 const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    lowercase: true,
+  },
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  orders: {
+    type: [String], // Array of strings
+    default: [],
+  },
+  reviews: {
+    type: Number,
+    default: 0,
+  },
+  created_at: {
+    type: String,
+    default: new Date().toISOString(),
+  },
+  updated_at: {
+    type: String,
+    default: new Date().toISOString(),
+  },
 });
 
-const User = mongoose.model("users", userSchema);
+// Middleware to update the `updated_at` field before saving
+userSchema.pre("save", function (next) {
+  this.updated_at = new Date().toISOString();
+  next();
+});
 
-export const validateUser = (userObject) => {
-  const errorList = [];
-  const allowedKeys = ["name", "email"];
-
-  const validatedKeysMessage = validateAllowedFields(userObject, allowedKeys);
-
-  if (validatedKeysMessage.length > 0) {
-    errorList.push(validatedKeysMessage);
-  }
-
-  if (userObject.name == null) {
-    errorList.push("name is a required field");
-  }
-
-  if (userObject.email == null) {
-    errorList.push("email is a required field");
-  }
-
-  return errorList;
-};
+const User = mongoose.model("User", userSchema);
 
 export default User;
