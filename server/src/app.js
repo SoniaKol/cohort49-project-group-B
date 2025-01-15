@@ -1,14 +1,18 @@
+import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
-import cors from "cors";
-import userRouter from "./routes/user.js";
 import itemRouter from "./routes/menu.js";
+import userRouter from "./routes/user.js";
+
+import "./controllers/auth.js";
+import authRouter from "./routes/auth.js";
 import menuRouter from "./routes/menu.js";
 import orderRouter from "./routes/orderRoutes.js";
 // import authRouter from "./routes/auth.js";
 import authRouter from "./routes/AuthRoute.js";
 import "./controllers/auth.js";
 import cookieParser from "cookie-parser";
+import restaurantsRouter from "./routes/restaurants.js";
 
 dotenv.config();
 
@@ -54,6 +58,9 @@ app.use("/api/user", userRouter);
 // Attach menu and order routes
 app.use("/api/menu", menuRouter);
 app.use("/api/menu", itemRouter);
+
+app.use("/api/restaurants", restaurantsRouter);
+app.use("/api/restaurants", restaurantsRouter);
 app.use("/api/order", orderRouter);
 
 export default app;
