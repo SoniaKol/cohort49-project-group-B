@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import Input from "../../components/Input";
+import AuthHeader from "../../components/AuthHeader";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ const Login = () => {
 
   return (
     <div>
-      <h1>Login</h1>
+      <AuthHeader text="New Account" />
       <form
         onSubmit={handleSubmit}
         style={{

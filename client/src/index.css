@@ -3,6 +3,7 @@
 
 :root {
   --yellow-base: #f5cb58;
+  --yellow-base-hover: #f3e9b5;
   --yellow-2: #f3e9b5;
   --orange-base: #e95322;
   --orange-2: #ffdecf;
@@ -76,8 +77,21 @@ button {
 
 .App {
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 375px;
+}
+
+@media screen and (min-width: 768px) {
+  .App {
+    width: 768px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .App {
+    width: 1024px;
+  }
 }
