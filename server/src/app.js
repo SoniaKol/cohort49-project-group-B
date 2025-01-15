@@ -9,7 +9,7 @@ import "./controllers/auth.js";
 import menuRouter from "./routes/menu.js";
 import orderRouter from "./routes/orderRoutes.js";
 // import authRouter from "./routes/auth.js";
-import authRouter from "./routes/AuthRoute.js";
+import authRouter from "./routes/authRoute.js";
 import "./controllers/auth.js";
 import cookieParser from "cookie-parser";
 import restaurantsRouter from "./routes/restaurants.js";
