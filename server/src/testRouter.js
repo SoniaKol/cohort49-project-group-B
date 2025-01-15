@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
-import User, { validateUser } from "./models/User.js";
 
+import User from "./models/User.js";
 import { logError } from "./util/logging.js";
 import validationErrorMessage from "./util/validationErrorMessage.js";
 
@@ -31,9 +31,8 @@ testRouter.post("/seed", async (req, res) => {
 
     // Validate users to the database
     data.users.forEach((user) => {
-      const errorList = validateUser(user);
-
-      if (errorList.length > 0) {
+      const errorList = 1;
+      if (errorList > 0) {
         const err = new Error(
           `Invalid user in seed data. Errors: ${validationErrorMessage(
             errorList,
