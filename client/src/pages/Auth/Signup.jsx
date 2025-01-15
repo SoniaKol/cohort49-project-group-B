@@ -14,7 +14,7 @@ const Login = () => {
     setUsername("");
 
     setTimeout(() => {
-      navigate("/");
+      navigate("/login");
     }, 300);
   };
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
