@@ -11,8 +11,8 @@ import orderRouter from "./routes/orderRoutes.js";
 // import authRouter from "./routes/auth.js";
 import authRouter from "./routes/authRoute.js";
 import "./controllers/auth.js";
-import cookieParser from "cookie-parser";
 import restaurantsRouter from "./routes/restaurants.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
