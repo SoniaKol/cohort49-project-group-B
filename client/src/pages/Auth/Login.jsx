@@ -67,22 +67,22 @@ const Login = () => {
         <form className="login-form" onSubmit={handleSubmit}>
           <label className="login-form-label" htmlFor="email">
             Email
+            <Input
+              name="email"
+              value={email}
+              onChange={(value) => setEmail(value)}
+              className="login-form-input"
+            />{" "}
           </label>
-          <Input
-            name="email"
-            value={email}
-            onChange={(value) => setEmail(value)}
-            className="login-form-input"
-          />
           <label htmlFor="password" className="login-form-label">
             Password
+            <Input
+              name="password"
+              value={password}
+              onChange={(value) => setPassword(value)}
+              className="login-form-input"
+            />
           </label>
-          <Input
-            name="password"
-            value={password}
-            onChange={(value) => setPassword(value)}
-            className="login-form-input"
-          />
 
           <button className="login-form-button" type="submit">
             Login

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import Input from "../../components/Input";
 import AuthHeader from "../../components/AuthHeader";
+import "../../styles/signup.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -47,55 +48,59 @@ const Login = () => {
   let statusComponent = null;
   if (error != null) {
     const message = error.message || "An error occurred";
-    statusComponent = <div>Oops: {message}</div>;
+    statusComponent = <div className="signup-status">Oops: {message}</div>;
   } else if (isLoading) {
-    statusComponent = <div>Creating user profile... </div>;
+    statusComponent = (
+      <div className="signup-status">Creating user profile... </div>
+    );
   }
 
   return (
-    <div>
+    <div className="signup">
       <AuthHeader text="New Account" />
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
-          width: "50%",
-          margin: "auto",
-        }}
-      >
-        <label>
-          Email:
-          <Input
-            name="email"
-            value={email}
-            onChange={(value) => setEmail(value)}
-          />
-        </label>
-        <label>
-          Password:
-          <Input
-            name="password"
-            value={password}
-            onChange={(value) => setPassword(value)}
-          />
-        </label>
-        <label>
-          Username:
-          <Input
-            name="username"
-            value={username}
-            onChange={(value) => setUsername(value)}
-          />
-        </label>
+      <div className="signup-wrap">
+        <form className="signup-form" onSubmit={handleSubmit}>
+          <label>
+            Email:
+            <Input
+              className="signup-input"
+              name="email"
+              value={email}
+              onChange={(value) => setEmail(value)}
+            />
+          </label>
+          <label>
+            Password:
+            <Input
+              className="signup-input"
+              name="password"
+              value={password}
+              onChange={(value) => setPassword(value)}
+            />
+          </label>
+          <label>
+            Username:
+            <Input
+              className="signup-input"
+              name="username"
+              value={username}
+              onChange={(value) => setUsername(value)}
+            />
+          </label>
+          <p className="signup-text">
+            By continuing, you agree to <span>Terms of Use </span>and{" "}
+            <span>Privacy Policy</span>.
+          </p>
 
-        <button type="submit">Login</button>
-      </form>
-      {statusComponent}
-      <span>
-        Already have an account? <Link to={"/login"}>Login</Link>
-      </span>
+          <button type="submit" className="signup-button">
+            Login
+          </button>
+        </form>
+        {statusComponent}
+        <div className="signup-footer">
+          Already have an account? <Link to={"/login"}>Login</Link>
+        </div>
+      </div>
     </div>
   );
 };
