@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import Input from "../../components/Input";
@@ -13,15 +13,18 @@ const Login = () => {
     setPassword("");
 
     setTimeout(() => {
-      navigate("/home");
+      navigate("/menu");
     }, 300);
   };
 
-  const { isLoading, error, performFetch } = useFetch("/login", onSuccess);
+  const { isLoading, error, performFetch, cancelFetch } = useFetch(
+    "/login",
+    onSuccess,
+  );
 
-  // useEffect(() => {
-  //   // return cancelFetch;
-  // }, []);
+  useEffect(() => {
+    return cancelFetch;
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
