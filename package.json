@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "concurrently": "^9.1.0",
+    "modern-normalize": "^3.0.1",
     "passport": "^0.7.0",
     "react-router-dom": "^7.0.2"
   }
