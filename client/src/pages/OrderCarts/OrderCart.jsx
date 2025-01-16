@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useCart } from "../../context/CartContext";
 import CartItem from "../../components/CartItem";
-import PizzaData from "../../data/PizzaData";
 
 const OrderCart = () => {
   const { cartItems, addToCart, removeFromCart } = useCart();
+  const [pizzaData, setPizzaData] = useState([]);
+
+  // Fetch pizza data from an API or database
+  useEffect(() => {
+    const fetchPizzaData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/pizzas");
+        const data = await response.json();
+        setPizzaData(data);
+      } catch (error) {
+        // console.error("Error fetching pizza data:", error);
+      }
+    };
+
+    fetchPizzaData();
+  }, []);
 
   const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
 
@@ -23,9 +38,9 @@ const OrderCart = () => {
       <div style={{ marginBottom: "20px" }}>
         <h2>Available Pizzas</h2>
         <div style={{ display: "flex", gap: "20px" }}>
-          {PizzaData.map((pizza) => (
+          {pizzaData.map((pizza) => (
             <div
-              key={pizza.id}
+              key={pizza.id} // Ensure unique keys for pizzas
               style={{
                 border: "1px solid #ccc",
                 padding: "10px",
@@ -78,16 +93,20 @@ const OrderCart = () => {
         }}
       >
         <div style={{ width: "60%" }}>
-          {cartItems.map((item) => (
-            <CartItem key={item.id} item={item} onRemove={removeFromCart} />
+          {cartItems.map((item, index) => (
+            <CartItem
+              key={item.id || `cart-item-${index}`}
+              item={item}
+              onRemove={removeFromCart}
+            />
           ))}
         </div>
         <div style={{ width: "30%", marginLeft: "20px" }}>
           <h2>Summary</h2>
           <ul>
-            {cartItems.map((item) => (
+            {cartItems.map((item, index) => (
               <li
-                key={item.id}
+                key={item.id || `summary-${index}`}
                 style={{ display: "flex", justifyContent: "space-between" }}
               >
                 <span>{item.name}</span>
