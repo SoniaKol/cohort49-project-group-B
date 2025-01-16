@@ -34,13 +34,11 @@ const OrderCart = () => {
     >
       <h1>Order Cart</h1>
 
-      {/* Pizza Selection Section */}
       <div style={{ marginBottom: "20px" }}>
-        <h2>Available Pizzas</h2>
         <div style={{ display: "flex", gap: "20px" }}>
           {pizzaData.map((pizza) => (
             <div
-              key={pizza.id} // Ensure unique keys for pizzas
+              key={pizza.id}
               style={{
                 border: "1px solid #ccc",
                 padding: "10px",
