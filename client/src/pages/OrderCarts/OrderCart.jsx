@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useCart } from "../../context/CartContext";
+import Nav from "../../components/Nav";
 import CartItem from "../../components/CartItem";
-import PizzaData from "../../data/PizzaData";
+import { toast } from "react-toastify";
 
 const OrderCart = () => {
   const { cartItems, addToCart, removeFromCart } = useCart();
+  const [pizzaData, setPizzaData] = useState([]);
 
-  const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
+  // Fetch pizza data from an API or database
+  useEffect(() => {
+    const fetchPizzaData = async () => {
+      try {
+        const response = await fetch("/api/pizzas");
+        const data = await response.json();
+        setPizzaData(data);
+      } catch (error) {
+        toast.error("Failed to fetch pizza data");
+      }
+    };
+
+    fetchPizzaData();
+  }, []);
+
+  const totalAmount = parseFloat(
+    cartItems.reduce((total, item) => total + item.price, 0).toFixed(2),
+  );
 
   return (
     <div
@@ -17,13 +36,12 @@ const OrderCart = () => {
         padding: "20px",
       }}
     >
+      <Nav />
       <h1>Order Cart</h1>
 
-      {/* Pizza Selection Section */}
       <div style={{ marginBottom: "20px" }}>
-        <h2>Available Pizzas</h2>
         <div style={{ display: "flex", gap: "20px" }}>
-          {PizzaData.map((pizza) => (
+          {pizzaData.map((pizza) => (
             <div
               key={pizza.id}
               style={{
@@ -78,16 +96,20 @@ const OrderCart = () => {
         }}
       >
         <div style={{ width: "60%" }}>
-          {cartItems.map((item) => (
-            <CartItem key={item.id} item={item} onRemove={removeFromCart} />
+          {cartItems.map((item, index) => (
+            <CartItem
+              key={item.id || `cart-item-${index}`}
+              item={item}
+              onRemove={removeFromCart}
+            />
           ))}
         </div>
         <div style={{ width: "30%", marginLeft: "20px" }}>
           <h2>Summary</h2>
           <ul>
-            {cartItems.map((item) => (
+            {cartItems.map((item, index) => (
               <li
-                key={item.id}
+                key={item.id || `summary-${index}`}
                 style={{ display: "flex", justifyContent: "space-between" }}
               >
                 <span>{item.name}</span>
