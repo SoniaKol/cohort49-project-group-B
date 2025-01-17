@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useCart } from "../../context/CartContext";
 import Nav from "../../components/Nav";
 import CartItem from "../../components/CartItem";
+import { toast } from "react-toastify";
 
 const OrderCart = () => {
   const { cartItems, addToCart, removeFromCart } = useCart();
@@ -11,11 +12,11 @@ const OrderCart = () => {
   useEffect(() => {
     const fetchPizzaData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/pizzas");
+        const response = await fetch("/api/pizzas");
         const data = await response.json();
         setPizzaData(data);
       } catch (error) {
-        // console.error("Error fetching pizza data:", error);
+        toast.error("Failed to fetch pizza data");
       }
     };
 
