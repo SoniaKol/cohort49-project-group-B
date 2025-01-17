@@ -1,3 +1,9 @@
+
+import React from "react";
+import CartItem from "../../components/CartItem";
+import { useCart } from "../../context/CartContext";
+import PizzaData from "../../data/PizzaData";
+import OrderTracking from "../../pages/OrderTracking/OrderTracking";
 import React, { useEffect, useState } from "react";
 import { useCart } from "../../context/CartContext";
 import Nav from "../../components/Nav";
@@ -127,6 +133,7 @@ const OrderCart = () => {
           </button>
         </div>
       </div>
+      <OrderTracking />
     </div>
   );
 };
