@@ -1,4 +1,5 @@
-
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
 
 # Disabled test for now until we resolve an issue with client tests
 # npm test 
