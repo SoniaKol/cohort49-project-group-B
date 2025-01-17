@@ -3,10 +3,12 @@ import { useCart } from "../../context/CartContext";
 import Nav from "../../components/Nav";
 import CartItem from "../../components/CartItem";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const OrderCart = () => {
   const { cartItems, addToCart, removeFromCart } = useCart();
   const [pizzaData, setPizzaData] = useState([]);
+  const navigate = useNavigate();
 
   // Fetch pizza data from an API or database
   useEffect(() => {
@@ -27,6 +29,13 @@ const OrderCart = () => {
     cartItems.reduce((total, item) => total + item.price, 0).toFixed(2),
   );
 
+  const handleCheckout = () => {
+    if (cartItems.length === 0) {
+      toast.error("Please add items to cart first");
+      return;
+    }   
+    navigate ("/checkout");
+  };
   return (
     <div
       style={{
@@ -122,7 +131,7 @@ const OrderCart = () => {
             <strong>Total:</strong>
             <strong>€{totalAmount}</strong>
           </div>
-          <button style={{ marginTop: "20px", padding: "10px 20px" }}>
+          <button onClick = {handleCheckout}style={{ marginTop: "20px", padding: "10px 20px" }}>
             Proceed to Checkout
           </button>
         </div>
