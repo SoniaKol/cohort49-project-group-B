@@ -1,8 +1,8 @@
 import React from "react";
-import { useCart } from "../../context/CartContext";
 import CartItem from "../../components/CartItem";
+import { useCart } from "../../context/CartContext";
 import PizzaData from "../../data/PizzaData";
-
+import OrderTracking from "../../pages/OrderTracking/OrderTracking";
 const OrderCart = () => {
   const { cartItems, addToCart, removeFromCart } = useCart();
 
@@ -105,6 +105,7 @@ const OrderCart = () => {
           </button>
         </div>
       </div>
+      <OrderTracking />
     </div>
   );
 };
