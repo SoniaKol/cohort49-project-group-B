@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useCart } from "../../context/CartContext";
+import Nav from "../../components/Nav";
 import CartItem from "../../components/CartItem";
 
 const OrderCart = () => {
@@ -34,6 +35,7 @@ const OrderCart = () => {
         padding: "20px",
       }}
     >
+      <Nav />
       <h1>Order Cart</h1>
 
       <div style={{ marginBottom: "20px" }}>
