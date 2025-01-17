@@ -21,7 +21,9 @@ const OrderCart = () => {
     fetchPizzaData();
   }, []);
 
-  const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
+  const totalAmount = parseFloat(
+    cartItems.reduce((total, item) => total + item.price, 0).toFixed(2),
+  );
 
   return (
     <div
