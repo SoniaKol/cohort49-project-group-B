@@ -9,15 +9,41 @@ const Checkout = () => {
 
   const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (!address) {
       toast.error("Please provide your address");
       return;
     }
 
-    // Here you would handle the submission, e.g., save order, show confirmation, etc.
-    toast.success("Order submitted successfully!");
+    // prepare the order data
+    const orderData = {
+      cartItems,
+      totalAmount,
+      address,
+      paymentMethod,
+      restaurant_id: "exampleRestaurantId", // Replace with actual restaurant ID
+    };
+
+    try {
+      // Make API call to submit the order
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit order");
+      }
+
+      toast.success("Order submitted successfully!");
+      // Optionally, clear the cart, navigate to an order confirmation page, etc.
+    } catch (error) {
+      toast.error("Error submitting the order. Please try again.");
+    }
   };
 
   return (

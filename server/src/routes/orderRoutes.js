@@ -16,12 +16,31 @@ router.get("/", async (req, res) => {
 //Add new order
 router.post("/", async (req, res) => {
   try {
-    const { restaurant_id, total_amount, status, category } = req.body;
+    const {
+      restaurant_id,
+      total_amount,
+      status,
+      category,
+      cartItems,
+      paymentMethod,
+      address,
+    } = req.body;
+
+    const items = cartItems.map((item) => ({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      quantity: item.quantity,
+    }));
+
     const newOrder = new Order({
       restaurant_id,
       total_amount,
       status,
       category,
+      items,
+      paymentMethod,
+      address,
     });
     await newOrder.save();
     res.status(201).json(newOrder);
