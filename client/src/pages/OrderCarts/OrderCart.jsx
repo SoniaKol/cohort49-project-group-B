@@ -33,8 +33,8 @@ const OrderCart = () => {
     if (cartItems.length === 0) {
       toast.error("Please add items to cart first");
       return;
-    }   
-    navigate ("/checkout");
+    }
+    navigate("/checkout");
   };
   return (
     <div
@@ -131,7 +131,10 @@ const OrderCart = () => {
             <strong>Total:</strong>
             <strong>€{totalAmount}</strong>
           </div>
-          <button onClick = {handleCheckout}style={{ marginTop: "20px", padding: "10px 20px" }}>
+          <button
+            onClick={handleCheckout}
+            style={{ marginTop: "20px", padding: "10px 20px" }}
+          >
             Proceed to Checkout
           </button>
         </div>

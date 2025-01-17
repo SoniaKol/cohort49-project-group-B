@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 const Checkout = () => {
   const { cartItems } = useCart();
   const [address, setAddress] = useState("");
-  const [paymentMethod] = useState("Cash");  // Fixed payment method for now
+  const [paymentMethod] = useState("Cash"); // Fixed payment method for now
 
   const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
 
@@ -40,13 +40,22 @@ const Checkout = () => {
           <h3>Order Summary</h3>
           <ul>
             {cartItems.map((item, index) => (
-              <li key={index} style={{ display: "flex", justifyContent: "space-between" }}>
+              <li
+                key={index}
+                style={{ display: "flex", justifyContent: "space-between" }}
+              >
                 <span>{item.name}</span>
                 <span>€{item.price}</span>
               </li>
             ))}
           </ul>
-          <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "bold" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              fontWeight: "bold",
+            }}
+          >
             <span>Total:</span>
             <span>€{totalAmount}</span>
           </div>
@@ -57,7 +66,14 @@ const Checkout = () => {
           <p>{paymentMethod}</p>
         </div>
 
-        <button type="submit" style={{ padding: "10px 20px", backgroundColor: "green", color: "white" }}>
+        <button
+          type="submit"
+          style={{
+            padding: "10px 20px",
+            backgroundColor: "green",
+            color: "white",
+          }}
+        >
           Submit Order
         </button>
       </form>
