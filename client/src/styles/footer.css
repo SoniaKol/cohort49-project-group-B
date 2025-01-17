@@ -1,0 +1,12 @@
+.footer {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.footer-link-text {
+  display: flex;
+  gap: 10px;
+}
