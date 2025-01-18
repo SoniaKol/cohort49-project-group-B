@@ -1,12 +1,15 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import LogoutBtn from "./LogoutBtn";
+import { useNavigate } from "react-router-dom";
 
 import TEST_ID from "./Nav.testid";
+
 const Nav = () => {
   const navigate = useNavigate();
 
-  const logout = () => {
-    navigate("/");
+  const orderCard = () => {
+    navigate("/order-cart");
   };
   return (
     <nav>
@@ -15,24 +18,13 @@ const Nav = () => {
           <Link to="/home">Home</Link>
         </li>
         <li>
-          <Link to="/menu">Menu</Link>
-        </li>
-        <li>
-          <Link to="/order-cart">Order Cart</Link>
-        </li>
-        <li>
           <Link to="/about-us" data-testid={TEST_ID.linkToAboutUs}>
-            About Us
+            Contact Us
           </Link>
         </li>
-        <li>
-          <Link to="/restaurants" data-testid={TEST_ID.linkToRestaurants}>
-            Restaurants
-          </Link>
-        </li>
+        <button onClick={orderCard}>Order Cart</button>
+        <LogoutBtn />
       </ul>
-
-      <button onClick={logout}>logout</button>
     </nav>
   );
 };

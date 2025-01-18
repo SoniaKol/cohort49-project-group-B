@@ -1,20 +1,19 @@
 import React from "react";
-import Nav from "../../components/Nav";
 import AvailableRestaurants from "../../components/AvailableRestaurants";
-import SearchBar from "../../components/SearchBar";
-import { SearchProvider } from "../../context/SearchContext"; // import your context provider
+import LogoutBtn from "../../components/LogoutBtn";
 import TEST_ID from "./Home.testid";
+import Footer from "../../components/Footer";
+import "../../styles/home.css";
 
 const Home = () => {
   return (
-    <div data-testid={TEST_ID.container}>
-      <Nav />
-      <h1>This is the homepage</h1>
-
+    <div data-testid={TEST_ID.container} className="home">
+      <div className="home-header">
+        <h1 className="home-header-title">Hello!</h1>
+        <LogoutBtn />
+      </div>
       <AvailableRestaurants />
-      <SearchProvider>
-        <SearchBar />
-      </SearchProvider>
+      <Footer />
     </div>
   );
 };

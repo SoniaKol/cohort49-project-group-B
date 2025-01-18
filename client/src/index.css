@@ -6,6 +6,7 @@
   --yellow-base-hover: #f3e9b5;
   --yellow-2: #f3e9b5;
   --orange-base: #e95322;
+  --orange-dark: #d94e1f;
   --orange-2: #ffdecf;
   --font: #391713;
   --font-2: #f8f8f8;
@@ -80,18 +81,23 @@ button {
   padding: 0 20px;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  width: 375px;
+  min-width: 375px;
 }
 
 @media screen and (min-width: 768px) {
   .App {
-    width: 768px;
+    min-width: 768px;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .App {
-    width: 1024px;
+    min-width: 1024px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .App {
+    width: 1440px;
   }
 }

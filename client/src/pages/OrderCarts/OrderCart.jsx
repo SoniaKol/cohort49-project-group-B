@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CartItem from "../../components/CartItem";
 import { useCart } from "../../context/CartContext";
 import OrderTracking from "../../pages/OrderTracking/OrderTracking";
-import { useEffect, useState } from "react";
 import Nav from "../../components/Nav";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
