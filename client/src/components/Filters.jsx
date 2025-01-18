@@ -1,32 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import "../styles/Filters.css";
 
 const Filters = () => {
+  const [, setActiveFilter] = useState("All");
+
+  const filters = ["All", "Starters", "Pizzas", "Desserts", "Drinks"];
+
   return (
     <>
-      <ul
-        style={{
-          display: "flex",
-          listStyleType: "none",
-          padding: 0,
-          gap: "1rem",
-        }}
-      >
-        <li>
-          <NavLink to="">All</NavLink>
-        </li>
-        <li>
-          <NavLink to="/menu/starters">Starters</NavLink>
-        </li>
-        <li>
-          <NavLink to="/menu/pizzas">Pizzas</NavLink>
-        </li>
-        <li>
-          <NavLink to="/menu/desserts">Desserts</NavLink>
-        </li>
-        <li>
-          <NavLink to="/menu/drinks">Drinks</NavLink>
-        </li>
+      <ul className="filters-list">
+        {filters.map((filter) => (
+          <li key={filter} className="filters-item">
+            <NavLink
+              to={filter === "All" ? "/menu" : `/menu/${filter.toLowerCase()}`}
+              end={filter === "All"}
+              className={({ isActive }) =>
+                isActive ? "filter-button active" : "filter-button"
+              }
+              onClick={() => setActiveFilter(filter)}
+            >
+              {filter}
+            </NavLink>
+          </li>
+        ))}
       </ul>
       <Outlet />
     </>

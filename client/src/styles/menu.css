@@ -1,0 +1,14 @@
+.menu-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 1em;
+}
+
+.menu-title {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 30px;
+  text-transform: capitalize;
+  color: var(--font);
+}

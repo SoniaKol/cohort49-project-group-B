@@ -4,6 +4,7 @@ import Item from "./Item";
 import { useCart } from "../context/CartContext";
 import useFetch from "../hooks/useFetch";
 import { Outlet, useParams, useSearchParams } from "react-router-dom";
+import LoadingSpinner from "./LoadingSpinner";
 
 const MenuList = () => {
   const { filter } = useParams();
@@ -22,12 +23,16 @@ const MenuList = () => {
     },
   );
 
-  useEffect(() => {
-    performFetch();
+  const [loadingDelay, setLoadingDelay] = useState(false);
 
-    // return () => {
-    //   cancelFetch();
-    // };
+  useEffect(() => {
+    setLoadingDelay(true);
+    const timer = setTimeout(() => {
+      performFetch();
+      setLoadingDelay(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, [filter, page, limit]);
 
   const { addToCart } = useCart();
@@ -38,8 +43,8 @@ const MenuList = () => {
 
   let content = null;
 
-  if (isLoading) {
-    content = <div>loading...</div>;
+  if (loadingDelay || isLoading) {
+    content = <LoadingSpinner />;
   } else if (error != null) {
     content = <div>Error: {error.toString()}</div>;
   } else {
@@ -77,17 +82,20 @@ const MenuList = () => {
     <>
       {content}
       <div>
-        <button disabled={page <= 1} onClick={() => handlePageChange(page - 1)}>
-          Previous
+        <button
+          disabled={isLoading || page <= 1}
+          onClick={() => handlePageChange(page - 1)}
+        >
+          {isLoading && page > 1 ? <LoadingSpinner /> : "Previous"}
         </button>
         <span>
           Page {page} of {totalPages}
         </span>
         <button
-          disabled={page >= totalPages}
+          disabled={isLoading || page >= totalPages}
           onClick={() => handlePageChange(page + 1)}
         >
-          Next
+          {isLoading && page < totalPages ? <LoadingSpinner /> : "Next"}
         </button>
       </div>
       <Outlet />

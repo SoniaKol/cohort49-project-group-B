@@ -1,0 +1,31 @@
+.filters-list {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+}
+
+.filters-item {
+}
+.filter-button {
+  padding: 10px 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 20px;
+  background-color: #e0e0e0;
+  color: #333;
+  font-size: 14px;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.filter-button:hover {
+  background-color: #d6d6d6;
+}
+
+.filter-button.active {
+  background-color: #ff8c00; /* Фон активного фільтра */
+  color: white; /* Колір тексту активного фільтра */
+  font-weight: bold;
+}
