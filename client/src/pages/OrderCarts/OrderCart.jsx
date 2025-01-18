@@ -1,13 +1,9 @@
-
 import React from "react";
 import CartItem from "../../components/CartItem";
 import { useCart } from "../../context/CartContext";
-import PizzaData from "../../data/PizzaData";
 import OrderTracking from "../../pages/OrderTracking/OrderTracking";
-import React, { useEffect, useState } from "react";
-import { useCart } from "../../context/CartContext";
+import { useEffect, useState } from "react";
 import Nav from "../../components/Nav";
-import CartItem from "../../components/CartItem";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -111,11 +107,11 @@ const OrderCart = () => {
         }}
       >
         <div style={{ width: "60%" }}>
-          {cartItems.map((item, index) => (
+          {cartItems.map((item) => (
             <CartItem
-              key={item.id || `cart-item-${index}`}
-              item={item}
-              onRemove={removeFromCart}
+              key={item.id} // Use unique id
+              item={item} // Pass the whole item object
+              onRemove={removeFromCart} // Pass the remove function
             />
           ))}
         </div>

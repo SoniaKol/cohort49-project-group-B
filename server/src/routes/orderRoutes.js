@@ -31,6 +31,7 @@ router.post("/", async (req, res) => {
       name: item.name,
       price: item.price,
       quantity: item.quantity,
+      imgId: item.imgId,
     }));
 
     const newOrder = new Order({

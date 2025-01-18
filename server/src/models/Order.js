@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const orderSchema = new Schema({
   restaurant_id: {
-    type: Schema.Types.ObjectId, // Reference to the Restaurant model
+    type: Schema.Types.ObjectId,
     ref: "Restaurant",
     required: true,
   },
@@ -22,7 +22,15 @@ const orderSchema = new Schema({
     required: true,
     enum: ["starter", "main_dish", "desserts", "drinks"],
   },
-  //ordered items?
+  items: [
+    {
+      id: { type: Schema.Types.ObjectId, required: true, ref: "Item" },
+      name: { type: String, required: true },
+      price: { type: Number, required: true },
+      quantity: { type: Number, required: true },
+      imgId: { type: Number, required: true }, // Add imgId here
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now,
@@ -33,12 +41,8 @@ const orderSchema = new Schema({
   },
 });
 
-// Update `updatedAt` field before saving
+// Pre-save hook for updating `updatedAt`
 orderSchema.pre("save", function (next) {
   this.updatedAt = Date.now();
   next();
 });
-
-const Order = mongoose.model("Order", orderSchema);
-
-export default Order;

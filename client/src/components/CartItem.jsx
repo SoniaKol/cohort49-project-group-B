@@ -11,13 +11,13 @@ const CartItem = ({ item, onRemove }) => {
       }}
     >
       <img
-        src={item.photo}
+        src={`/images/${item.imgId}.jpg`} // Adjust this path as needed
         alt={item.name}
         style={{ width: "80px", height: "80px", objectFit: "cover" }}
       />
       <div style={{ flex: 1, marginLeft: "10px" }}>
         <h4>{item.name}</h4>
-        <p>${item.price}</p>
+        <p>€{item.price.toFixed(2)}</p>
         <button
           onClick={() => onRemove(item.id)}
           style={{
@@ -40,6 +40,8 @@ CartItem.propTypes = {
     name: PropTypes.string.isRequired,
     photo: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    quantity: PropTypes.number.isRequired,
+    imgId: PropTypes.number.isRequired,
   }).isRequired,
   onRemove: PropTypes.func.isRequired,
 };
