@@ -1,11 +1,8 @@
-.home {
-}
-
 .home-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 161px;
+  padding: 2rem 2rem;
 }
 
 .home-header-title {
@@ -40,7 +37,7 @@
 
 .restaurants-list-item,
 .restaurants-list-fake {
-  height: 431px;
+  height: 50vh;
   padding: 20px 10px;
   border-radius: 20px;
   background: #fff;
@@ -63,12 +60,13 @@
 .restaurants-list-fake-img {
   border-radius: 20px;
   min-width: 225px;
-  height: 231px;
+  min-height: 150px;
+  max-height: 231px;
   object-fit: cover;
 }
 
 .restaurants-list-fake-img {
-  height: 100%;
+  max-height: 100%;
   filter: blur(5px);
 }
 
@@ -189,13 +187,12 @@
     font-size: 18px;
   }
 
-  .restaurants-list-item,
-  .restaurants-list-fake {
-    height: 531px;
-  }
-
   .restaurants-list-item-img {
     height: 331px;
+  }
+
+  .restaurants-list-fake-img {
+    max-height: 100%;
   }
 
   .restaurants-list-item-title {
