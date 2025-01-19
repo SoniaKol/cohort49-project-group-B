@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import pizza from "../img/14.jpg";
+import pizza from "../img/home.jpg";
 import fake from "../img/1.jpg";
 import { Link } from "react-router-dom";
 
@@ -91,9 +91,8 @@ function AvailableRestaurants() {
             </a>
             <p className="restaurants-list-item-tag">
               {restaurant.cuisine} cuisine
-            </p>{" "}
+            </p>
             <Link to="/menu" className="restaurants-list-item-btn">
-              {" "}
               Check the menu
             </Link>
           </li>

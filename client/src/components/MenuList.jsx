@@ -49,28 +49,22 @@ const MenuList = () => {
     content = <div>Error: {error.toString()}</div>;
   } else {
     content = (
-      <ul
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          listStyleType: "none",
-          padding: 0,
-          listStyle: "none",
-          gap: "1rem",
-        }}
-      >
+      <ul className="menu-list">
         {items &&
           items.map((item) => {
             return (
               <li
                 key={item._id}
                 data-elementid={item._id}
-                style={{
-                  width: "30%",
-                }}
+                className="menu-list-item"
               >
                 <Item item={item} />
-                <button onClick={() => addToCart(item)}>Add to cart</button>
+                <button
+                  onClick={() => addToCart(item)}
+                  className="menu-list-add-btn"
+                >
+                  Add to cart
+                </button>
               </li>
             );
           })}
@@ -79,27 +73,29 @@ const MenuList = () => {
   }
 
   return (
-    <>
+    <div className="menu-container">
       {content}
-      <div>
+      <div className="menu-pagination">
         <button
+          className="menu-pagination-button"
           disabled={isLoading || page <= 1}
           onClick={() => handlePageChange(page - 1)}
         >
-          {isLoading && page > 1 ? <LoadingSpinner /> : "Previous"}
+          Previous
         </button>
-        <span>
+        <span className="menu-pagination-text">
           Page {page} of {totalPages}
         </span>
         <button
+          className="menu-pagination-button"
           disabled={isLoading || page >= totalPages}
           onClick={() => handlePageChange(page + 1)}
         >
-          {isLoading && page < totalPages ? <LoadingSpinner /> : "Next"}
+          Next
         </button>
       </div>
       <Outlet />
-    </>
+    </div>
   );
 };
 

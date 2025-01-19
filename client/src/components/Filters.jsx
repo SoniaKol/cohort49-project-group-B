@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import "../styles/Filters.css";
+import All from "../img/Starters.svg";
+import Pizzas from "../img/Meals.svg";
+import Desserts from "../img/Desserts.svg";
+import Drinks from "../img/Drinks.svg";
+import Starters from "../img/Vegan.svg";
 
 const Filters = () => {
   const [, setActiveFilter] = useState("All");
 
   const filters = ["All", "Starters", "Pizzas", "Desserts", "Drinks"];
+  const icons = [All, Starters, Pizzas, Desserts, Drinks];
 
   return (
     <>
@@ -20,6 +26,13 @@ const Filters = () => {
               }
               onClick={() => setActiveFilter(filter)}
             >
+              <div className="img-wrap">
+                <img
+                  className="filter-button-img"
+                  src={icons[filters.indexOf(filter)]}
+                  alt={filter}
+                />
+              </div>
               {filter}
             </NavLink>
           </li>

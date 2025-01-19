@@ -18,18 +18,17 @@ const Item = ({ item }) => {
   const img = images.find((img) => img.imgName === `./${imgId}.jpg`);
 
   return (
-    <div>
+    <div className="menu-list-item-container">
       <img
         src={img.src.default}
         alt={food_name}
-        style={{
-          width: "100px",
-          height: "100px",
-        }}
+        className="menu-list-item-image"
       />
-      <h3>{food_name}</h3>
-      <p>{description}</p>
-      <h4>{price} €</h4>
+      <div className="menu-list-item-title-price">
+        <h3 className="menu-list-item-title">{food_name}</h3>
+        <h4 className="menu-list-item-price">{price} €</h4>
+      </div>
+      <p className="menu-list-item-description">{description}</p>
     </div>
   );
 };
