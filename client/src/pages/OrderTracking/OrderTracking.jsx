@@ -21,12 +21,6 @@ const OrderTracking = () => {
   return (
     <div className="order-tracking-container">
       <p>this page need to bind it checkout page</p>
-      <h1>Order Tracking</h1>
-      <h3>your order is:</h3>
-      <h4>order 1</h4>
-      <h4>order 2</h4>
-      <h4>order 3</h4>
-
       <p>Your order is being prepared. Estimated delivery time:</p>
       <h2>{formatTime(counter)}</h2>
       <div className="pizza-animation">
