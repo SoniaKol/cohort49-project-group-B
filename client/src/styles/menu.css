@@ -61,7 +61,7 @@
 .menu-list-item-image {
   border-radius: 36px;
   width: 100%;
-  max-height: 174px;
+  height: 174px;
   object-fit: cover;
 }
 .menu-list-item-title-price {
@@ -164,6 +164,6 @@
   }
 
   .menu-list-item-image {
-    max-height: 278px;
+    height: 278px;
   }
 }
