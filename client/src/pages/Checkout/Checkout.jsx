@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useCart } from "../../context/CartContext";
+//add navigate tracking page inside checkout
 
 const Checkout = () => {
   const navigate = useNavigate();
