@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import "../styles/Filters.css";
+import "../styles/filters.css";
 import All from "../img/Starters.svg";
 import Pizzas from "../img/Meals.svg";
 import Desserts from "../img/Desserts.svg";
