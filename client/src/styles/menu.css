@@ -90,6 +90,7 @@
   font-weight: 300;
   font-size: 12px;
   color: var(--font);
+  height: 30px;
 }
 
 .menu-pagination {
