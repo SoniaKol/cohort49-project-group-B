@@ -1,25 +1,40 @@
 //  creating context to managing cart globally in the app
 import PropTypes from "prop-types";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext();
 
+export const useCart = () => useContext(CartContext);
+
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    // Load cart from local storage on initialization
+    const savedCart = localStorage.getItem("cartItems");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
 
-  const addToCart = (item) => setCartItems((prevItems) => [...prevItems, item]);
-
-  const removeFromCart = (id) => {
+  // Add an item to the cart
+  const addToCart = (item) => {
     setCartItems((prevItems) => {
-      const index = prevItems.findIndex((item) => item.id === id);
-      if (index !== -1) {
-        const updatedItems = [...prevItems];
-        updatedItems.splice(index, 1);
-        return updatedItems;
-      }
-      return prevItems;
+      const updatedCart = [...prevItems, { ...item, id: Date.now() }]; // Ensure a unique id
+      localStorage.setItem("cartItems", JSON.stringify(updatedCart)); // Update local storage
+      return updatedCart;
     });
   };
+
+  // Remove an item from the cart
+  const removeFromCart = (id) => {
+    setCartItems((prevItems) => {
+      const updatedCart = prevItems.filter((item) => item.id !== id); // Filter out the item with the matching id
+      localStorage.setItem("cartItems", JSON.stringify(updatedCart)); // Update local storage
+      return updatedCart;
+    });
+  };
+
+  useEffect(() => {
+    // Persist cart in local storage whenever it changes
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   return (
     <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
@@ -31,5 +46,3 @@ export const CartProvider = ({ children }) => {
 CartProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
-export const useCart = () => useContext(CartContext);

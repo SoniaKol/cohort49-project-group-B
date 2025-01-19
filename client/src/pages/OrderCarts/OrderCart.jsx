@@ -105,11 +105,11 @@ const OrderCart = () => {
         }}
       >
         <div style={{ width: "60%" }}>
-          {cartItems.map((item, index) => (
+          {cartItems.map((item) => (
             <CartItem
-              key={item.id || `cart-item-${index}`}
-              item={item}
-              onRemove={removeFromCart}
+              key={item.id} // Use unique id
+              item={item} // Pass the whole item object
+              onRemove={removeFromCart} // Pass the remove function
             />
           ))}
         </div>
