@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LogoutBtn from "./LogoutBtn";
-import "../styles/Nav.css";
+import "../styles/nav.css";
 
 import TEST_ID from "./Nav.testid";
 
