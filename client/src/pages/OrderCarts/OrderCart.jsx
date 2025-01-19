@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CartItem from "../../components/CartItem";
 import { useCart } from "../../context/CartContext";
-import OrderTracking from "../../pages/OrderTracking/OrderTracking";
 import Nav from "../../components/Nav";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -106,11 +105,11 @@ const OrderCart = () => {
         }}
       >
         <div style={{ width: "60%" }}>
-          {cartItems.map((item) => (
+          {cartItems.map((item, index) => (
             <CartItem
-              key={item.id} // Use unique id
-              item={item} // Pass the whole item object
-              onRemove={removeFromCart} // Pass the remove function
+              key={item.id || `cart-item-${index}`}
+              item={item}
+              onRemove={removeFromCart}
             />
           ))}
         </div>
@@ -140,7 +139,6 @@ const OrderCart = () => {
           </button>
         </div>
       </div>
-      <OrderTracking />
     </div>
   );
 };

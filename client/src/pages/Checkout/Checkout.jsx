@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { useCart } from "../../context/CartContext";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useCart } from "../../context/CartContext";
+//add navigate tracking page inside checkout
 
 const Checkout = () => {
+  const navigate = useNavigate();
+
   const { cartItems } = useCart();
   const [address, setAddress] = useState("");
   const [paymentMethod] = useState("Cash"); // Fixed payment method for now
@@ -10,6 +14,8 @@ const Checkout = () => {
   const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
 
   const handleSubmit = async (event) => {
+    navigate("/order-tracking");
+
     event.preventDefault();
     if (!address) {
       toast.error("Please provide your address");
@@ -99,6 +105,7 @@ const Checkout = () => {
             backgroundColor: "green",
             color: "white",
           }}
+          onClick={handleSubmit}
         >
           Submit Order
         </button>
