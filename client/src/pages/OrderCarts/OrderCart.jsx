@@ -6,8 +6,8 @@ import Nav from "../../components/Nav";
 import { useCart } from "../../context/CartContext";
 
 const OrderCart = () => {
-  const { cartItems, addToCart, removeFromCart } = useCart();
-  const [pizzaData, setPizzaData] = useState([]);
+  const { cartItems } = useCart();
+  const [setPizzaData] = useState([]);
   const navigate = useNavigate();
 
   // Fetch pizza data from an API or database
