@@ -1,0 +1,16 @@
+.order-card-btn {
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  padding: 0.5em 1em;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.order-card-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.order-card-icon {
+  stroke-width: 1px;
+  stroke: var(--orange-base);
+}

@@ -1,12 +1,18 @@
 import React from "react";
 import Filters from "../../components/Filters";
 import Nav from "../../components/Nav";
+import OrderCardBtn from "../../components/OrderCardBtn";
+import "../../styles/menu.css";
 
 const Menu = () => {
   return (
-    <div>
+    <div className="menu">
       <Nav />
-      <h1>Menu</h1>
+      <div className="menu-wrap">
+        <h1 className="menu-title">Menu</h1>
+        <OrderCardBtn />
+      </div>
+
       <Filters />
     </div>
   );
