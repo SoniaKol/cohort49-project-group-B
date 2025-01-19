@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import CartItem from "../../components/CartItem";
-import { useCart } from "../../context/CartContext";
-import OrderTracking from "../../pages/OrderTracking/OrderTracking";
-import Nav from "../../components/Nav";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import CartItem from "../../components/CartItem";
+import Nav from "../../components/Nav";
+import { useCart } from "../../context/CartContext";
 
 const OrderCart = () => {
   const { cartItems, addToCart, removeFromCart } = useCart();
@@ -140,7 +139,6 @@ const OrderCart = () => {
           </button>
         </div>
       </div>
-      <OrderTracking />
     </div>
   );
 };
