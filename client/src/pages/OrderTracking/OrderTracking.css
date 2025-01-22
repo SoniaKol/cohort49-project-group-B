@@ -4,17 +4,6 @@
   font-family: Arial, sans-serif;
 }
 
-h1 {
-  font-size: 2rem;
-  color: #333;
-}
-
-h2 {
-  font-size: 3rem;
-  color: #e74c3c;
-  margin: 20px 0;
-}
-
 .pizza-animation {
   font-size: 4rem;
   animation: spinPizza 2s linear infinite; /* Dönen animasyon */
@@ -27,9 +16,4 @@ h2 {
   100% {
     transform: rotate(360deg);
   }
-}
-
-p {
-  font-size: 1.2rem;
-  color: #555;
 }
