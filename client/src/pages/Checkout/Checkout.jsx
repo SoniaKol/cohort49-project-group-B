@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useCart } from "../../context/CartContext";
+import BackBtn from "../../components/BackBtn";
+import "../../styles/checkout.css";
+import card from "../../img/Card.svg";
 //add navigate tracking page inside checkout
 
 const Checkout = () => {
@@ -53,73 +56,65 @@ const Checkout = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Checkout</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="address">Shipping Address:</label>
+    <div className="checkout">
+      <div className="checkout-header">
+        <BackBtn />
+        <h2 className="checkout-title">Checkout</h2>
+      </div>
+      <form onSubmit={handleSubmit} className="checkout-form">
+        <label htmlFor="address" className="checkout-form-label">
+          Shipping Address:
           <input
+            className="checkout-form-input"
             id="address"
             type="text"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             required
-            style={{ width: "100%", padding: "10px", margin: "10px 0" }}
+            placeholder="Enter your address"
           />
-        </div>
+        </label>
 
-        <div>
-          <h3>Order Summary</h3>
-          <ul>
+        <div className="checkout-order-summary">
+          <h3 className="checkout-order-summary-title">Order Summary</h3>
+          <ul className="checkout-order-summary-list">
             {cartItems.map((item, index) => (
-              <li
-                key={index}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  padding: "10px",
-                  borderBottom: "1px solid #ccc",
-                }}
-              >
-                <div>
-                  <strong>{item.name}</strong> {/* Display item name */}
-                  <br />
-                  <span style={{ fontSize: "14px", color: "gray" }}>
-                    {item.description || "No description available"}
-                  </span>
-                </div>
-                <span>€{item.price.toFixed(2)}</span> {/* Display item price */}
+              <li className="checkout-order-summary-item" key={index}>
+                <p className="checkout-order-summary-item-name">
+                  {item.food_name}
+                </p>{" "}
+                {/* Display item name */}
+                <p className="checkout-order-summary-item-price">
+                  €{item.price.toFixed(2)}
+                </p>
+                {/* Display item price */}
               </li>
             ))}
           </ul>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              fontWeight: "bold",
-              marginTop: "10px",
-            }}
-          >
-            <span>Total:</span>
-            <span>€{totalAmount.toFixed(2)}</span>
+          <div className="checkout-order-summary-total-wrap">
+            <p>Total:</p>
+            <p>€{totalAmount.toFixed(2)}</p>
           </div>
         </div>
 
-        <div>
-          <h3>Payment Method</h3>
-          <p>{paymentMethod}</p>
+        <div className="checkout-payment-method-wrap">
+          <h3 className="checkout-payment-method-title">Payment Method</h3>
+          <div>
+            <img
+              src={card}
+              alt="Card"
+              className="checkout-payment-method-icon"
+            />
+            <p className="checkout-payment-method-text">{paymentMethod}</p>
+          </div>
         </div>
 
         <button
           type="submit"
-          style={{
-            padding: "10px 20px",
-            backgroundColor: "green",
-            color: "white",
-          }}
           onClick={handleSubmit}
+          className="checkout-submit-btn"
         >
-          Submit Order
+          Order Now
         </button>
       </form>
     </div>
