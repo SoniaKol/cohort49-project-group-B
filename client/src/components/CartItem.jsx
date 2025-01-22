@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import remove from "../img/trash-icon.svg";
 
 const CartItem = ({ item, onRemove }) => {
   const images = [];
@@ -16,36 +17,24 @@ const CartItem = ({ item, onRemove }) => {
   const img = images.find((img) => img.imgName === `./${item.imgId}.jpg`);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        marginBottom: "10px",
-      }}
-    >
-      {img && (
-        <img
-          src={img.src.default}
-          alt={item.food_name}
-          style={{ width: "80px", height: "80px", objectFit: "cover" }}
-        />
-      )}
-      <div style={{ flex: 1, marginLeft: "10px" }}>
-        <h4>{item.food_name}</h4>
-        <p>€{item.price.toFixed(2)}</p>
-        <button
-          onClick={() => onRemove(item.id)}
-          style={{
-            padding: "5px 10px",
-            color: "white",
-            backgroundColor: "red",
-            border: "none",
-          }}
-        >
-          Remove
-        </button>
+    <li className="cart-item">
+      <div className="img-tex-wrap">
+        {img && (
+          <img
+            src={img.src.default}
+            alt={item.food_name}
+            className="cart-item-img"
+          />
+        )}
+        <div className="cart-item-text-wrap">
+          <h4 className="cart-item-name">{item.food_name}</h4>
+          <p className="cart-item-price">€{item.price.toFixed(2)}</p>
+        </div>
       </div>
-    </div>
+      <button onClick={() => onRemove(item.id)} className="cart-item-btn">
+        <img src={remove} alt="Remove" className="cart-item-btn-icon" />
+      </button>
+    </li>
   );
 };
 

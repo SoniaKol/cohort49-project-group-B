@@ -7,7 +7,6 @@ import Signup from "./pages/Auth/Signup"; // Corrected import path
 import Checkout from "./pages/Checkout/Checkout";
 import Home from "./pages/Home/Home";
 import Menu from "./pages/Menu/Menu";
-import OrderCart from "./pages/OrderCarts/OrderCart";
 import OrderTracking from "./pages/OrderTracking/OrderTracking";
 import StartPage from "./pages/StartPage";
 
@@ -26,7 +25,6 @@ const App = () => {
         <Route path="/about-us" element={<h1>About us</h1>} />
         <Route path="/restaurants" element={<h1>Restaurants</h1>} />
         <Route path="/logout" element={<h1>Logout</h1>} />
-        <Route path="/order-cart" element={<OrderCart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-tracking" element={<OrderTracking />} />
       </Routes>
