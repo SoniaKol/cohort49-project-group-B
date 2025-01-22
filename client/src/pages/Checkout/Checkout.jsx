@@ -74,10 +74,21 @@ const Checkout = () => {
             {cartItems.map((item, index) => (
               <li
                 key={index}
-                style={{ display: "flex", justifyContent: "space-between" }}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  padding: "10px",
+                  borderBottom: "1px solid #ccc",
+                }}
               >
-                <span>{item.name}</span>
-                <span>€{item.price}</span>
+                <div>
+                  <strong>{item.name}</strong> {/* Display item name */}
+                  <br />
+                  <span style={{ fontSize: "14px", color: "gray" }}>
+                    {item.description || "No description available"}
+                  </span>
+                </div>
+                <span>€{item.price.toFixed(2)}</span> {/* Display item price */}
               </li>
             ))}
           </ul>
@@ -86,10 +97,11 @@ const Checkout = () => {
               display: "flex",
               justifyContent: "space-between",
               fontWeight: "bold",
+              marginTop: "10px",
             }}
           >
             <span>Total:</span>
-            <span>€{totalAmount}</span>
+            <span>€{totalAmount.toFixed(2)}</span>
           </div>
         </div>
 
