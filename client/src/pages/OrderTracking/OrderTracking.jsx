@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/OrderTracking.css"; // CSS dosyasını import ediyoruz
 import { useNavigate } from "react-router-dom";
+import { clearLS } from "../../util/clearLS";
 
 const OrderTracking = () => {
   const [counter, setCounter] = useState(25 * 60); // 25 minutes in seconds
@@ -35,7 +36,10 @@ const OrderTracking = () => {
         <p className="order-tracking-text">Your pizza is on the way!</p>
 
         <button
-          onClick={() => navigate("/home")}
+          onClick={() => {
+            navigate("/home");
+            clearLS();
+          }}
           className="order-tracking-button"
         >
           Home
