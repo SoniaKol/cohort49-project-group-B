@@ -4,6 +4,9 @@ import useFetch from "../../hooks/useFetch";
 import Input from "../../components/Input";
 import AuthHeader from "../../components/AuthHeader";
 import "../../styles/signup.css";
+import eyeOpen from "../../img/eye-open.svg";
+import eyeClosed from "../../img/eye-close.svg";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -28,6 +31,12 @@ const Login = () => {
     return cancelFetch;
   }, []);
 
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prev) => !prev);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
@@ -50,9 +59,7 @@ const Login = () => {
     const message = error.message || "An error occurred";
     statusComponent = <div className="signup-status">Oops: {message}</div>;
   } else if (isLoading) {
-    statusComponent = (
-      <div className="signup-status">Creating user profile... </div>
-    );
+    statusComponent = <LoadingSpinner />;
   }
 
   return (
@@ -67,6 +74,8 @@ const Login = () => {
               name="email"
               value={email}
               onChange={(value) => setEmail(value)}
+              type="email"
+              placeholder="example@email.com"
             />
           </label>
           <label>
@@ -76,6 +85,14 @@ const Login = () => {
               name="password"
               value={password}
               onChange={(value) => setPassword(value)}
+              type={isPasswordVisible ? "text" : "password"}
+              placeholder="********"
+            />
+            <img
+              src={isPasswordVisible ? eyeClosed : eyeOpen}
+              alt=""
+              onClick={togglePasswordVisibility}
+              className="toggle-password"
             />
           </label>
           <label>
@@ -85,6 +102,8 @@ const Login = () => {
               name="username"
               value={username}
               onChange={(value) => setUsername(value)}
+              type="text"
+              placeholder="ExampleUsername"
             />
           </label>
           <p className="signup-text">

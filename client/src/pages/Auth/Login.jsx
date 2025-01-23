@@ -4,8 +4,9 @@ import useFetch from "../../hooks/useFetch";
 import Input from "../../components/Input";
 import AuthHeader from "../../components/AuthHeader";
 import "../../styles/login.css";
-
-import "../../styles/login.css";
+import eyeOpen from "../../img/eye-open.svg";
+import eyeClosed from "../../img/eye-close.svg";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,6 +20,12 @@ const Login = () => {
     setTimeout(() => {
       navigate("/home");
     }, 300);
+  };
+
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prev) => !prev);
   };
 
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
@@ -51,7 +58,7 @@ const Login = () => {
     const message = error.message || "An error occurred";
     statusComponent = <div className="login-status">Oops: {message}</div>;
   } else if (isLoading) {
-    statusComponent = <div>Login...</div>;
+    statusComponent = <LoadingSpinner />;
   }
 
   return (
@@ -72,7 +79,8 @@ const Login = () => {
               value={email}
               onChange={(value) => setEmail(value)}
               className="login-form-input"
-            />{" "}
+              type="email"
+            />
           </label>
           <label htmlFor="password" className="login-form-label">
             Password
@@ -81,6 +89,13 @@ const Login = () => {
               value={password}
               onChange={(value) => setPassword(value)}
               className="login-form-input"
+              type={isPasswordVisible ? "text" : "password"}
+            />
+            <img
+              src={isPasswordVisible ? eyeClosed : eyeOpen}
+              alt=""
+              onClick={togglePasswordVisibility}
+              className="toggle-password"
             />
           </label>
 
@@ -90,7 +105,7 @@ const Login = () => {
         </form>
         {statusComponent}
         <div className="login-footer">
-          Don`t have an account yet?
+          Don`t have an account yet?{" "}
           <Link to={"/signup"} className="login-footer-link">
             Signup
           </Link>

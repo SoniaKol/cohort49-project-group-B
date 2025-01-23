@@ -32,6 +32,7 @@
 }
 
 .login-form label {
+  position: relative;
   display: flex;
   flex-direction: column;
   font-family: var(--font-family);
@@ -93,6 +94,15 @@
 
 .login-footer a {
   color: var(--orange-base);
+}
+
+.toggle-password {
+  position: absolute;
+  right: 20px;
+  top: 45px;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
 }
 
 @media screen and (min-width: 768px) {
