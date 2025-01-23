@@ -9,14 +9,9 @@ const StartPage = () => {
     <div className="start-page">
       <img className="start-page-logo" src={logo} alt="logo" />
       <h1 className="start-page-title">
-        APP<span>NAME</span>
+        NOM<span>NOM</span>
       </h1>
-      <p className="start-page-text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe omnis sed
-        rem eos! Soluta nulla sunt corporis. Voluptate necessitatibus earum
-        aliquam fuga explicabo! Sit tempore placeat, inventore quae officia
-        incidunt.
-      </p>
+      <p className="start-page-text">Your favorite food, just a tap away.</p>
       <Link className="start-page-link" to="/login">
         Log In
       </Link>

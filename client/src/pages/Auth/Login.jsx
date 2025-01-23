@@ -60,9 +60,9 @@ const Login = () => {
       <div className="login-wrap">
         <h3 className="login-title">Welcome</h3>
         <p className="login-text">
-          Login to your account Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Impedit, fugit. Sequi delectus sit rem iste qui
-          nesciunt in sint tenetur?
+          Ready to satisfy your cravings? Log in to explore your favorite
+          restaurants, browse menus, and place your next order in just a few
+          clicks.
         </p>
         <form className="login-form" onSubmit={handleSubmit}>
           <label className="login-form-label" htmlFor="email">
@@ -90,7 +90,7 @@ const Login = () => {
         </form>
         {statusComponent}
         <div className="login-footer">
-          Don`t have an account yet?{" "}
+          Don`t have an account yet?
           <Link to={"/signup"} className="login-footer-link">
             Signup
           </Link>
