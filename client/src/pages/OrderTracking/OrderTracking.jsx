@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./OrderTracking.css"; // CSS dosyasını import ediyoruz
+import "../../styles/OrderTracking.css"; // CSS dosyasını import ediyoruz
+import { useNavigate } from "react-router-dom";
 
 const OrderTracking = () => {
   const [counter, setCounter] = useState(25 * 60); // 25 minutes in seconds
-
+  const navigate = useNavigate();
   useEffect(() => {
     const timer = setInterval(() => {
       setCounter((prevCounter) => (prevCounter > 0 ? prevCounter - 1 : 0));
@@ -19,16 +20,27 @@ const OrderTracking = () => {
   };
 
   return (
-    <div className="order-tracking-container">
-      <p>this page need to bind it checkout page</p>
-      <p>Your order is being prepared. Estimated delivery time:</p>
-      <h2>{formatTime(counter)}</h2>
-      <div className="pizza-animation">
-        <span role="img" aria-label="pizza">
-          🍕
-        </span>
+    <div className="order-tracking">
+      <h1 className="order-tracking-title">Order Tracking</h1>
+      <div className="order-tracking-wrap">
+        <p className="order-tracking-text">
+          Your order is being prepared. Estimated delivery time:
+        </p>
+        <h2 className="order-tracking-counter">{formatTime(counter)}</h2>
+        <div className="pizza-animation">
+          <span role="img" aria-label="pizza">
+            🍕
+          </span>
+        </div>
+        <p className="order-tracking-text">Your pizza is on the way!</p>
+
+        <button
+          onClick={() => navigate("/home")}
+          className="order-tracking-button"
+        >
+          Home
+        </button>
       </div>
-      <p>Your pizza is on the way!</p>
     </div>
   );
 };
