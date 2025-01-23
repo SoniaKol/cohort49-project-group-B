@@ -14,13 +14,13 @@ const Menu = () => {
 
   useEffect(() => {
     if (isCartOpen) {
-      document.body.style.overflow = "hidden"; // Заборона скролу на сторінці
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = ""; // Відновлення скролу
+      document.body.style.overflow = "";
     }
 
     return () => {
-      document.body.style.overflow = ""; // Очистка стилю при демонтованому компоненті
+      document.body.style.overflow = "";
     };
   }, [isCartOpen]);
 
