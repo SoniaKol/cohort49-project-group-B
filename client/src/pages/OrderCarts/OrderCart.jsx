@@ -26,6 +26,18 @@ const OrderCart = ({ isCartOpen, toggleCart }) => {
   //   fetchPizzaData();
   // }, []);
 
+  const cartText = (items) => {
+    if (items === 0) {
+      return "Your cart is empty! Do you want to add something?";
+    }
+
+    if (items === 1) {
+      return "You have 1 item in the cart";
+    }
+
+    return `You have ${items} items in the cart`;
+  };
+
   const totalAmount = parseFloat(
     cartItems.reduce((total, item) => total + item.price, 0).toFixed(2),
   );
@@ -45,9 +57,7 @@ const OrderCart = ({ isCartOpen, toggleCart }) => {
           &times;
         </button>
         <h1 className="order-title">Order Cart</h1>
-        <p className="order-text">
-          You have {cartItems.length} items in the cart
-        </p>
+        <p className="order-text">{cartText(cartItems.length)}</p>
       </div>
       <ul className="order-cart-list">
         {cartItems.map((item, index) => (
