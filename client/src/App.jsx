@@ -9,6 +9,7 @@ import Home from "./pages/Home/Home";
 import Menu from "./pages/Menu/Menu";
 import OrderTracking from "./pages/OrderTracking/OrderTracking";
 import StartPage from "./pages/StartPage";
+import AboutUs from "./pages/AboutUs";
 
 const App = () => {
   return (
@@ -22,9 +23,8 @@ const App = () => {
           <Route path="" element={<MenuList />} />
           <Route path=":filter" element={<MenuList />} />
         </Route>
-        <Route path="/about-us" element={<h1>About us</h1>} />
-        <Route path="/restaurants" element={<h1>Restaurants</h1>} />
-        <Route path="/logout" element={<h1>Logout</h1>} />
+        <Route path="/about-us" element={<AboutUs />} />
+
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-tracking" element={<OrderTracking />} />
       </Routes>

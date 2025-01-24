@@ -4,8 +4,9 @@ import useFetch from "../../hooks/useFetch";
 import Input from "../../components/Input";
 import AuthHeader from "../../components/AuthHeader";
 import "../../styles/login.css";
-
-import "../../styles/login.css";
+import eyeOpen from "../../img/eye-open.svg";
+import eyeClosed from "../../img/eye-close.svg";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,6 +20,12 @@ const Login = () => {
     setTimeout(() => {
       navigate("/home");
     }, 300);
+  };
+
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prev) => !prev);
   };
 
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
@@ -51,7 +58,7 @@ const Login = () => {
     const message = error.message || "An error occurred";
     statusComponent = <div className="login-status">Oops: {message}</div>;
   } else if (isLoading) {
-    statusComponent = <div>Login...</div>;
+    statusComponent = <LoadingSpinner />;
   }
 
   return (
@@ -60,9 +67,9 @@ const Login = () => {
       <div className="login-wrap">
         <h3 className="login-title">Welcome</h3>
         <p className="login-text">
-          Login to your account Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Impedit, fugit. Sequi delectus sit rem iste qui
-          nesciunt in sint tenetur?
+          Ready to satisfy your cravings? Log in to explore your favorite
+          restaurants, browse menus, and place your next order in just a few
+          clicks.
         </p>
         <form className="login-form" onSubmit={handleSubmit}>
           <label className="login-form-label" htmlFor="email">
@@ -72,7 +79,8 @@ const Login = () => {
               value={email}
               onChange={(value) => setEmail(value)}
               className="login-form-input"
-            />{" "}
+              type="email"
+            />
           </label>
           <label htmlFor="password" className="login-form-label">
             Password
@@ -81,6 +89,13 @@ const Login = () => {
               value={password}
               onChange={(value) => setPassword(value)}
               className="login-form-input"
+              type={isPasswordVisible ? "text" : "password"}
+            />
+            <img
+              src={isPasswordVisible ? eyeClosed : eyeOpen}
+              alt=""
+              onClick={togglePasswordVisibility}
+              className="toggle-password"
             />
           </label>
 
