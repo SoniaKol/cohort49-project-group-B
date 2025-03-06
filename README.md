@@ -1,12 +1,12 @@
-`TODO: Add a nice screenshot of the app!`
+![App Screenshot](screenshot.png)
 
-# Cohort XX final project
+# Cohort 49 final project
 
 This is the final project for the HackYourFuture curriculum we did as a cohort using the [MERN stack](https://www.mongodb.com/resources/languages/mern-stack) by following the agile methodology with our team and a group of mentors. A quick guide to what we built:
 
-> TODO: Add short description of the app
+> A MERN stack-based food delivery platform that connects users with restaurants, enabling seamless browsing, ordering, and real-time order tracking. Features include user authentication, restaurant and menu management, and a responsive UI for an optimal user experience.
 
-`[Click here for the Demo version](TODO: add link)`
+[Click here for the Demo version](https://c49-group-b.hackyourfuture.tech/)
 
 ## 1. Setup
 
